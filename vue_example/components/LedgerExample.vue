@@ -50,7 +50,7 @@ import TransportU2F from "@ledgerhq/hw-transport-u2f";
 import CosmosApp from "../../src";
 import { ERROR_CODE } from "../../src/common";
 
-const path = [44, 118, 5, 0, 3];
+const path = [44, 931, 0, 0, 0];
 
 export default {
   name: "CosmosLedger",
