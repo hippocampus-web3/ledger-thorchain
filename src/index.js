@@ -221,7 +221,7 @@ export default class CosmosApp {
         case 1:
           return publicKeyv1(this, serializedPath);
         case 2: {
-          const data = Buffer.concat([CosmosApp.serializeHRP("cosmos"), serializedPath]);
+          const data = Buffer.concat([CosmosApp.serializeHRP("thor"), serializedPath]);
           return publicKeyv2(this, data);
         }
         default:
