@@ -169,7 +169,7 @@ export default {
       this.log(`Test mode: ${response.test_mode}`);
 
       // now it is possible to access all commands in the app
-      response = await app.getAddressAndPubKey(path, "cosmos");
+      response = await app.getAddressAndPubKey(path, "tthor");
       if (response.return_code !== 0x9000) {
         this.log(`Error [${response.return_code}] ${response.error_message}`);
         return;
@@ -193,7 +193,7 @@ export default {
 
       // now it is possible to access all commands in the app
       this.log("Please click in the device");
-      response = await app.showAddressAndPubKey(path, "cosmos");
+      response = await app.showAddressAndPubKey(path, "tthor");
       if (response.return_code !== ERROR_CODE.NoError) {
         this.log(`Error [${response.return_code}] ${response.error_message}`);
         return;
