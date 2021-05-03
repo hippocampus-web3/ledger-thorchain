@@ -1,5 +1,5 @@
 <template>
-  <div class="cosmosLedger">
+  <div class="THORChainLedger">
     <input id="webusb" v-model="transportChoice" type="radio" value="WebUSB" />
     <label for="webusb">WebUSB</label>
     <input id="u2f" v-model="transportChoice" type="radio" value="U2F" />
@@ -47,13 +47,13 @@
 import TransportWebUSB from "@ledgerhq/hw-transport-webusb";
 // eslint-disable-next-line import/no-extraneous-dependencies
 import TransportU2F from "@ledgerhq/hw-transport-u2f";
-import CosmosApp from "../../src";
+import THORChainApp from "../../src";
 import { ERROR_CODE } from "../../src/common";
 
 const path = [44, 931, 0, 0, 0];
 
 export default {
-  name: "CosmosLedger",
+  name: "THORChainLedger",
   props: {},
   data() {
     return {
@@ -100,7 +100,7 @@ export default {
 
       // Given a transport (U2F/HIF/WebUSB) it is possible instantiate the app
       const transport = await this.getTransport();
-      const app = new CosmosApp(transport);
+      const app = new THORChainApp(transport);
 
       // now it is possible to access all commands in the app
       const response = await app.getVersion();
@@ -121,7 +121,7 @@ export default {
 
       // Given a transport (U2F/HIF/WebUSB) it is possible instantiate the app
       const transport = await this.getTransport();
-      const app = new CosmosApp(transport);
+      const app = new THORChainApp(transport);
 
       // now it is possible to access all commands in the app
       const response = await app.appInfo();
@@ -138,7 +138,7 @@ export default {
 
       // Given a transport (U2F/HIF/WebUSB) it is possible instantiate the app
       const transport = await this.getTransport();
-      const app = new CosmosApp(transport);
+      const app = new THORChainApp(transport);
 
       let response = await app.getVersion();
       this.log(`App Version ${response.major}.${response.minor}.${response.patch}`);
@@ -161,7 +161,7 @@ export default {
 
       // Given a transport (U2F/HIF/WebUSB) it is possible instantiate the app
       const transport = await this.getTransport();
-      const app = new CosmosApp(transport);
+      const app = new THORChainApp(transport);
 
       let response = await app.getVersion();
       this.log(`App Version ${response.major}.${response.minor}.${response.patch}`);
@@ -184,7 +184,7 @@ export default {
 
       // Given a transport (U2F/HIF/WebUSB) it is possible instantiate the app
       const transport = await this.getTransport();
-      const app = new CosmosApp(transport);
+      const app = new THORChainApp(transport);
 
       let response = await app.getVersion();
       this.log(`App Version ${response.major}.${response.minor}.${response.patch}`);
@@ -208,7 +208,7 @@ export default {
 
       // Given a transport (U2F/HID/WebUSB) it is possible instantiate the app
       const transport = await this.getTransport();
-      const app = new CosmosApp(transport);
+      const app = new THORChainApp(transport);
 
       let response = await app.getVersion();
       this.log(`App Version ${response.major}.${response.minor}.${response.patch}`);
@@ -217,7 +217,7 @@ export default {
 
       // now it is possible to access all commands in the app
       const message =
-        '{"fee":{"amount":[],"gas":"10000000"},"memo":"","msg":[{"type":"thorchain/MsgDeposit","value":{"coins":[{"amount":"200000000","asset":"THOR.RUNE"}],"memo":"SWAP:BNB.BNB:tbnb1qk2m905ypazwfau9cn0qnr4c4yxz63v9u9md20","signer":"tthor1c648xgpter9xffhmcqvs7lzd7hxh0prgv5t5gp"}}],"signatures":[]}';
+        '{"account_number":"588","chain_id":"thorchain","fee":{"amount":[],"gas":"2000000"},"memo":"TestMemo","msgs":[{"type":"thorchain/MsgSend","value":{"amount":[{"amount":"150000000","denom":"rune"}],"from_address":"tthor1c648xgpter9xffhmcqvs7lzd7hxh0prgv5t5gp","to_address":"tthor10xgrknu44d83qr4s4uw56cqxg0hsev5e68lc9z"}}],"sequence":"5"}';
       response = await app.sign(path, message);
 
       this.log("Response received!");
