@@ -1,8 +1,8 @@
 import THORChainApp from "index.js";
 
 test("check address conversion", async () => {
-  const pkStr = "caa2ba9852118c223fe64b0fdc6b9874f472db54a0461a4814c4a7d5e5cbf0dd";
+  const pkStr = "0264bff60f78aae3326b4fc3e16a7c48d0158bfe175fa4a9361190a42565662ae6";
   const pk = Buffer.from(pkStr, "hex");
   const addr = THORChainApp.getBech32FromPK("thor", pk);
-  expect(addr).toEqual("thor1k8q3l9shpf7as5mldax5qq6vdpvpwujzcq6ue2");
+  expect(addr).toEqual("thor1mwyrp6lj85swy5e5g4hjlaacm33g6rw3p4qmq4");
 });
