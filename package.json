@@ -21,7 +21,7 @@
   "homepage": "https://github.com/thorchain/ledger-thorchain-js",
   "dependencies": {
     "@babel/runtime": "^7.14.6",
-    "@ledgerhq/hw-transport": "^5.51.1",
+    "@ledgerhq/hw-transport": "^6.0.2",
     "@zondax/ledger-thorchain": "^0.0.1",
     "bech32": "^2.0.0",
     "ripemd160": "^2.0.2"
