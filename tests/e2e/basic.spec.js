@@ -10,12 +10,12 @@ require("dotenv").config({ path: "./.e2e.env" });
 const { THOR_ADDRESS = "unknown address", THOR_PUB_KEY = "unknown pub key" } = process.env;
 
 const JEST_TIMEOUT = 60000;
+// Use same time out for all tests in this file
 jest.setTimeout(JEST_TIMEOUT);
 
-let transport;
-let app;
-
 describe("THORChainApp e2e", () => {
+  let transport;
+  let app;
   beforeAll(async () => {
     transport = await TransportNodeHid.create(1000);
     app = new THORChainApp(transport);
@@ -64,8 +64,6 @@ describe("THORChainApp e2e", () => {
     // *****
     // Requirements: Open `THORChain` app on Ledger
     // *****
-
-    jest.setTimeout(JEST_TIMEOUT);
 
     // Derivation path. First 3 items are automatically hardened!
     const path = [44, 931, 0, 0, 0];
@@ -121,23 +119,22 @@ describe("THORChainApp e2e", () => {
     expect(resp).toHaveProperty("mcuVersion");
   });
 
-  it.only("sign_and_verify_MsgSend", async () => {
+  it("sign_and_verify_MsgSend", async () => {
     // *****
     // Requirements: Open `THORChain` app on Ledger and follow instructions
     // *****
-
 
     // Derivation path. First 3 items are automatically hardened!
     const path = [44, 931, 0, 0, 0];
     const message = String.raw`{"account_number":"588","chain_id":"thorchain","fee":{"amount":[],"gas":"2000000"},"memo":"TestMemo","msgs":[{"type":"thorchain/MsgSend","value":{"amount":[{"amount":"150000000","denom":"rune"}],"from_address":"tthor1c648xgpter9xffhmcqvs7lzd7hxh0prgv5t5gp","to_address":"tthor10xgrknu44d83qr4s4uw56cqxg0hsev5e68lc9z"}}],"sequence":"5"}`;
 
     const responsePk = await app.publicKey(path);
-    console.log(responsePk);
+    // console.log(responsePk);
     expect(responsePk.return_code).toEqual(ERROR_CODE.NoError);
     expect(responsePk.error_message).toEqual("No errors");
 
     const responseSign = await app.sign(path, message);
-    console.log(responseSign);
+    // console.log(responseSign);
     expect(responseSign.return_code).toEqual(ERROR_CODE.NoError);
     expect(responseSign.error_message).toEqual("No errors");
 
@@ -147,9 +144,9 @@ describe("THORChainApp e2e", () => {
 
     const signatureDER = responseSign.signature;
     const signature = secp256k1.signatureImport(signatureDER);
-    console.log(`signature`, signature);
+    // console.log(`signature`, signature);
     const signatureOk = secp256k1.ecdsaVerify(signature, msgHash, responsePk.compressed_pk);
-    console.log('signatureOks', signatureOk);
+    // console.log('signatureOks', signatureOk);
     expect(signatureOk).toEqual(true);
   });
 
@@ -157,8 +154,6 @@ describe("THORChainApp e2e", () => {
     // *****
     // Requirements: Open `THORChain` app on Ledger and follow instructions
     // *****
-
-    jest.setTimeout(JEST_TIMEOUT);
 
     const path = [44, 931, 0, 0, 0]; // Derivation path. First 3 items are automatically hardened!
     const invalidMessage =
