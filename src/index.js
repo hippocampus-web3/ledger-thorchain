@@ -17,7 +17,7 @@
 
 import crypto from "crypto";
 import Ripemd160 from "ripemd160";
-import bech32 from "bech32";
+import { bech32 } from "bech32";
 import { publicKeyv2, serializePathv2, signSendChunkv2 } from "./helperV2";
 import {
   APP_KEY,
@@ -59,9 +59,11 @@ export default class THORChainApp {
     if (pk.length !== 33) {
       throw new Error("expected compressed public key [31 bytes]");
     }
+
     const hashSha256 = crypto.createHash("sha256").update(pk).digest();
     const hashRip = new Ripemd160().update(hashSha256).digest();
-    return bech32.encode(hrp, bech32.toWords(hashRip));
+    const words = bech32.toWords(hashRip)
+    return bech32.encode(hrp, words);
   }
 
   async serializePath(path) {

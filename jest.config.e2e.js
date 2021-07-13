@@ -1,7 +1,7 @@
 const config = require("./jest.config");
 
 // Override default configuration
-config.testMatch = ["**/__tests__/**/*.[jt]s?(x)", "**/?(*.)+(ispec|test).[tj]s?(x)"];
+config.testMatch = ["**/tests/e2e/**/*.[jt]s?(x)"];
 
 // eslint-disable-next-line no-console
 console.log("RUNNING INTEGRATION TESTS");
