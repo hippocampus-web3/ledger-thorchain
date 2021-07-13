@@ -10,11 +10,12 @@ require("dotenv").config({ path: "./.e2e.env" });
 const { THOR_ADDRESS = "unknown address", THOR_PUB_KEY = "unknown pub key" } = process.env;
 
 const JEST_TIMEOUT = 60000;
-
-let transport;
-let app;
+// Use same time out for all tests in this file
+jest.setTimeout(JEST_TIMEOUT);
 
 describe("THORChainApp e2e", () => {
+  let transport;
+  let app;
   beforeAll(async () => {
     transport = await TransportNodeHid.create(1000);
     app = new THORChainApp(transport);
@@ -63,8 +64,6 @@ describe("THORChainApp e2e", () => {
     // *****
     // Requirements: Open `THORChain` app on Ledger
     // *****
-
-    jest.setTimeout(JEST_TIMEOUT);
 
     // Derivation path. First 3 items are automatically hardened!
     const path = [44, 931, 0, 0, 0];
@@ -125,7 +124,6 @@ describe("THORChainApp e2e", () => {
     // Requirements: Open `THORChain` app on Ledger and follow instructions
     // *****
 
-    jest.setTimeout(JEST_TIMEOUT);
     // Derivation path. First 3 items are automatically hardened!
     const path = [44, 931, 0, 0, 0];
     const message = String.raw`{"account_number":"588","chain_id":"thorchain","fee":{"amount":[],"gas":"2000000"},"memo":"TestMemo","msgs":[{"type":"thorchain/MsgSend","value":{"amount":[{"amount":"150000000","denom":"rune"}],"from_address":"tthor1c648xgpter9xffhmcqvs7lzd7hxh0prgv5t5gp","to_address":"tthor10xgrknu44d83qr4s4uw56cqxg0hsev5e68lc9z"}}],"sequence":"5"}`;
@@ -146,7 +144,9 @@ describe("THORChainApp e2e", () => {
 
     const signatureDER = responseSign.signature;
     const signature = secp256k1.signatureImport(signatureDER);
-    const signatureOk = secp256k1.verify(msgHash, signature, responsePk.compressed_pk);
+    // console.log(`signature`, signature);
+    const signatureOk = secp256k1.ecdsaVerify(signature, msgHash, responsePk.compressed_pk);
+    // console.log('signatureOks', signatureOk);
     expect(signatureOk).toEqual(true);
   });
 
@@ -154,8 +154,6 @@ describe("THORChainApp e2e", () => {
     // *****
     // Requirements: Open `THORChain` app on Ledger and follow instructions
     // *****
-
-    jest.setTimeout(JEST_TIMEOUT);
 
     const path = [44, 931, 0, 0, 0]; // Derivation path. First 3 items are automatically hardened!
     const invalidMessage =
