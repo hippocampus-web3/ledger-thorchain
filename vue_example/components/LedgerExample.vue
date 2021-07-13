@@ -2,8 +2,8 @@
   <div class="THORChainLedger">
     <input id="webusb" v-model="transportChoice" type="radio" value="WebUSB" />
     <label for="webusb">WebUSB</label>
-    <input id="u2f" v-model="transportChoice" type="radio" value="U2F" />
-    <label for="u2f">U2F</label>
+    <input id="webhid" v-model="transportChoice" type="radio" value="WebHID" />
+    <label for="webhid">WebHID</label>
     <br />
     <!--
         Commands
@@ -46,7 +46,7 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
 import TransportWebUSB from "@ledgerhq/hw-transport-webusb";
 // eslint-disable-next-line import/no-extraneous-dependencies
-import TransportU2F from "@ledgerhq/hw-transport-u2f";
+import TransportWebHID from "@ledgerhq/hw-transport-webhid";
 import THORChainApp from "../../src";
 import { ERROR_CODE } from "../../src/common";
 
@@ -85,9 +85,9 @@ export default {
         }
       }
 
-      if (this.transportChoice === "U2F") {
+      if (this.transportChoice === "WebHID") {
         try {
-          transport = await TransportU2F.create(10000);
+          transport = await TransportWebHID.create(10000);
         } catch (e) {
           this.log(e);
         }
@@ -98,7 +98,7 @@ export default {
     async getVersion() {
       this.deviceLog = [];
 
-      // Given a transport (U2F/HIF/WebUSB) it is possible instantiate the app
+      // Given a transport (WebUSB/WebHID) it is possible instantiate the app
       const transport = await this.getTransport();
       const app = new THORChainApp(transport);
 
@@ -119,7 +119,7 @@ export default {
     async appInfo() {
       this.deviceLog = [];
 
-      // Given a transport (U2F/HIF/WebUSB) it is possible instantiate the app
+      // Given a transport (WebUSB/WebHID) it is possible instantiate the app
       const transport = await this.getTransport();
       const app = new THORChainApp(transport);
 
@@ -136,7 +136,7 @@ export default {
     async getPublicKey() {
       this.deviceLog = [];
 
-      // Given a transport (U2F/HIF/WebUSB) it is possible instantiate the app
+      // Given a transport (WebUSB/WebHID) it is possible instantiate the app
       const transport = await this.getTransport();
       const app = new THORChainApp(transport);
 
@@ -159,7 +159,7 @@ export default {
     async getAddress() {
       this.deviceLog = [];
 
-      // Given a transport (U2F/HIF/WebUSB) it is possible instantiate the app
+      // Given a transport (WebUSB/WebHID) it is possible instantiate the app
       const transport = await this.getTransport();
       const app = new THORChainApp(transport);
 
@@ -182,7 +182,7 @@ export default {
     async showAddress() {
       this.deviceLog = [];
 
-      // Given a transport (U2F/HIF/WebUSB) it is possible instantiate the app
+      // Given a transport (WebUSB/WebHID) it is possible instantiate the app
       const transport = await this.getTransport();
       const app = new THORChainApp(transport);
 
