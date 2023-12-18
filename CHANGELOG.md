@@ -1,3 +1,12 @@
+# 0.2.0 (2023-12-18)
+
+## Update
+
+- Rewrite for vue 3
+- Update deps
+- Tested in serve env
+
+
 # 0.1.0 (2021-XX-XX)
 
 ## Update
