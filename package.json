@@ -7,7 +7,7 @@
   "types": "lib/index.d.ts",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/thorchain/ledger-thorchain-js.git"
+    "url": "git+https://github.com/xchainjsledger-thorchain-js.git"
   },
   "keywords": [
     "Ledger",
@@ -18,9 +18,9 @@
   "author": "THORChain",
   "license": "Apache-2.0",
   "bugs": {
-    "url": "https://github.com/thorchain/ledger-thorchain-js/issues"
+    "url": "https://github.com/xchainjs/ledger-thorchain-js/issues"
   },
-  "homepage": "https://github.com/thorchain/ledger-thorchain-js",
+  "homepage": "https://github.com/xchainjs/ledger-thorchain-js",
   "dependencies": {
     "@ledgerhq/hw-transport": "6.30.1",
     "@ledgerhq/hw-transport-webhid": "6.28.1",
