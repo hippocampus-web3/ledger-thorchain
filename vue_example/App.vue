@@ -6,15 +6,9 @@
   </div>
 </template>
 
-<script>
+<script setup>
 import LedgerExample from "./components/LedgerExample.vue";
 
-export default {
-  name: "App",
-  components: {
-    LedgerExample,
-  },
-};
 </script>
 
 <style>

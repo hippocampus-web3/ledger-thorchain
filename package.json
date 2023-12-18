@@ -22,23 +22,27 @@
   },
   "homepage": "https://github.com/thorchain/ledger-thorchain-js",
   "dependencies": {
-    "@ledgerhq/hw-transport": "^6.2.0",
+    "@ledgerhq/hw-transport": "6.30.1",
+    "@ledgerhq/hw-transport-webhid": "6.30.1",
+    "@ledgerhq/hw-transport-node-hid": "6.30.1",
+    "@ledgerhq/hw-transport-webusb": "6.30.1",
     "bech32": "^2.0.0",
-    "ripemd160": "^2.0.2"
+    "crypto-browserify": "^3.12.0",
+    "ripemd160": "^2.0.2",
+    "stream-browserify": "^3.0.0"
   },
   "devDependencies": {
-    "@ledgerhq/hw-transport-node-hid": "^6.2.1",
-    "@ledgerhq/hw-transport-webhid": "^6.2.0",
-    "@ledgerhq/hw-transport-webusb": "^6.2.0",
+    "@ledgerhq/hw-transport-node-hid": "6.30.1",
+    "@ledgerhq/hw-transport-webusb": "6.30.1",
     "@ledgerhq/logs": "^6.2.0",
     "@types/jest": "^26.0.24",
-    "@types/ledgerhq__hw-transport": "^4.21.4",
+    "@types/ledgerhq__hw-transport": "4.21.8",
     "@types/node": "^16.4.8",
     "@types/node-hid": "^1.3.1",
     "@types/ripemd160": "^2.0.0",
     "@types/secp256k1": "^4.0.3",
-    "@vue/cli-plugin-babel": "^4.5.13",
-    "@vue/cli-service": "^4.5.13",
+    "@vue/cli-plugin-babel": "^5.0.8",
+    "@vue/cli-service": "^5.0.8",
     "bip32": "2.0.6",
     "bip39": "3.0.4",
     "core-js": "^3.16.0",
@@ -50,9 +54,8 @@
     "rimraf": "^3.0.2",
     "secp256k1": "^4.0.2",
     "ts-jest": "^27.0.4",
-    "typescript": "^4.3.5",
-    "vue": "^2.6.14",
-    "vue-template-compiler": "^2.6.14"
+    "typescript": "^4.9.4",
+    "vue": "^3.3.12"
   },
   "scripts": {
     "clean": "rimraf \"{lib,lib-es}\"/**",
