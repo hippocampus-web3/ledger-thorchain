@@ -7,13 +7,15 @@ module.exports = {
     resolve: {
       fallback: {
         crypto: require.resolve('crypto-browserify'),
-        stream: require.resolve("stream-browserify")
+        stream: require.resolve("stream-browserify"),
+        process: require.resolve("process/browser")
         // Other fallbacks if necessary...
       },
     },
     plugins: [
       new webpack.ProvidePlugin({
         Buffer: ['buffer', 'Buffer'],
+        process: 'process/browser',
         // Other global variables if necessary...
       }),
     ],
