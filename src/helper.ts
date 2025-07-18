@@ -10,7 +10,7 @@ import {
 } from "./common";
 import crypto from "crypto";
 import Ripemd160 from "ripemd160";
-import { bech32 } from "bech32";
+import { bech32 } from '@scure/base'
 import { PubKeyResponse, SignResponse, VersionResponse } from "./types";
 
 
@@ -31,7 +31,7 @@ export function getBech32FromPK(hrp: string, pk: Buffer): string {
 
   const hashSha256 = crypto.createHash("sha256").update(pk).digest();
   const hashRip = new Ripemd160().update(hashSha256).digest();
-  const words = bech32.toWords(hashRip);
+  const words = bech32.toWords(new Uint8Array(hashRip))
   return bech32.encode(hrp, words);
 }
 

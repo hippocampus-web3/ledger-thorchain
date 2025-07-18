@@ -23,7 +23,7 @@
   "homepage": "https://github.com/xchainjs/ledger-thorchain-js",
   "dependencies": {
     "@ledgerhq/hw-transport": "^6.31.6",
-    "bech32": "^2.0.0",
+    "@scure/base": "^1.2.6",
     "ripemd160": "^2.0.2"
   },
   "devDependencies": {
